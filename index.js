@@ -35,9 +35,21 @@ app.get('/api/persons', (req, res) => {
 app.post('/api/persons', (req, res) => {
   const body = req.body
 
-  if (!body.name || !body.number) {
-    return response.status(400).json({
-      error: 'data missing' 
+  if (!body.name) {
+    return res.status(400).json({
+      error: 'Name missing.' 
+    })
+  }
+  
+  if (!body.number) {
+    return res.status(400).json({
+      error: 'Number missing.' 
+    })
+  }
+
+  if (persons.find(person => person.name === body.name) != null) {
+    return res.status(400).json({
+      error: 'Name already exists in database.' 
     })
   }
 
@@ -54,7 +66,7 @@ app.post('/api/persons', (req, res) => {
 
 app.get('/api/persons/:id', (req, res) => {
   const id = Number(req.params.id)
-  const person = persons.find(note => note.id === id)
+  const person = persons.find(person => person.id === id)
 
   if(person) {
     res.json(person)
