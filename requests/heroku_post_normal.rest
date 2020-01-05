@@ -1,0 +1,7 @@
+POST https://secure-shore-26805.herokuapp.com/api/persons
+Content-Type: application/json
+
+{
+    "name": "Linda",
+    "number": "090123534"
+}
