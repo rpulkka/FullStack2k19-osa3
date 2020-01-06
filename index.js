@@ -4,7 +4,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
-const Person = require('./models/persons')
+const Person = require('./models/person')
 
 morgan.token('postdata', function (req, res) { 
   if(req.method!="POST") {
