@@ -27,14 +27,14 @@ const generateId = () => {
 
 app.get('/api/persons', (req, res) => {
   Person.find({}).then(persons => {
-    response.json(persons)
+    res.json(persons)
   })
 })
 
 app.post('/api/persons', (req, res) => {
   const body = req.body
 
-  if (!body.name) {
+  /*if (!body.name) {
     return res.status(400).json({
       error: 'Name missing.' 
     })
@@ -50,7 +50,7 @@ app.post('/api/persons', (req, res) => {
     return res.status(400).json({
       error: 'Name already exists in database.' 
     })
-  }
+  }*/
 
   const newPerson = new Person({
     name: body.name,
@@ -59,7 +59,7 @@ app.post('/api/persons', (req, res) => {
   })  
 
   newPerson.save().then(savedPerson => {
-    res.json(savedNote.toJSON())
+    res.json(savedPerson.toJSON())
   })
 })
 
