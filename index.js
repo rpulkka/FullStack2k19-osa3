@@ -52,15 +52,15 @@ app.post('/api/persons', (req, res) => {
     })
   }
 
-  const newPerson = {
+  const newPerson = new Person({
     name: body.name,
     number: body.number,
     id: generateId()
-  }  
+  })  
 
-  persons.concat(newPerson)
-
-  res.json(newPerson)
+  newPerson.save().then(savedPerson => {
+    res.json(savedNote.toJSON())
+  })
 })
 
 app.get('/api/persons/:id', (req, res) => {
